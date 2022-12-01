@@ -17,6 +17,7 @@ function App() {
   const [bricks, setBricks] = useState(BRICKS);
   const [ballPosition, setBallPosition] = useState(new Vector3(0, 0, 0));
   const [score, setScore] = useState(0);
+  const [ballVisible, setBallVisible] = useState(true);
   const [gameStatus, setGameStatus] = useState(0);
 
   const changeBricks = (row, column) => {
@@ -33,7 +34,10 @@ function App() {
           if (d < 0.7) {
             changeBricks(row, column);
             setScore(score + 1);
-            if (ballPosition[1] > 3) setGameStatus(1);
+            if (ballPosition[1] > 3) {
+              setGameStatus(1);
+              setBallVisible(false);
+            }
           }
         }
       })
@@ -55,7 +59,7 @@ function App() {
           <Wall />
           <Wall position={[-6.6, -4, 0]} />
           <Paddle />
-          {gameStatus !== 0 && <Ball {...{ setBallPosition, setGameStatus, gameStatus }} />}
+          {ballVisible && <Ball {...{ setBallPosition, setBallVisible, setGameStatus, gameStatus }} />}
           <Bricks {...{ bricks }} />
         </Physics>
       </Canvas>

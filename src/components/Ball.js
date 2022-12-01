@@ -5,6 +5,7 @@ import { BALL_SIZE, WIDTH } from "../constants";
 export default function Ball({
   args = [WIDTH / 2, BALL_SIZE, BALL_SIZE],
   setBallPosition,
+  setBallVisible,
   setGameStatus,
   gameStatus,
 }) {
@@ -16,6 +17,7 @@ export default function Ball({
         setBallPosition(v);
       } else if (gameStatus !== 2) {
         setGameStatus(2);
+        setBallVisible(false);
       }
     });
   });
