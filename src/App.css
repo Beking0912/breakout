@@ -1,0 +1,24 @@
+.App {
+  text-align: center;
+}
+
+.score {
+  font-size: 4rem;
+  margin: 0;
+  color: aquamarine;
+  font-weight: bold;
+  position: absolute;
+  top: 9rem;
+  left: 6rem;
+}
+
+.title {
+  margin: 0;
+  color: aquamarine;
+  font-weight: bold;
+  position: absolute;
+  left: 3rem;
+  top: 2rem;
+  font-size: 2rem;
+  width: 10rem;
+}
