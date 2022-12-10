@@ -1,5 +1,5 @@
 const COLORS = ["blue", "green", "yellow", "orange", "red"];
-const SENTENCES = ['Score:', 'You win the game!', 'Try again?'];
+const SENTENCES = ['Score:', 'You win the game!', 'Failed. Try again!'];
 
 const WIDTH = 1;
 const HEIGHT = 0.4;
