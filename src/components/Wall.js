@@ -1,10 +1,10 @@
-import { useBox } from "@react-three/cannon";
+import { useRef } from "react";
 import { DEPTH, WIDTH } from "../constants";
 
 function Wall({ args = [WIDTH, 16.5, DEPTH], position = [5.5, -4, 0] }) {
-  const [ref] = useBox(() => ({ args, position }));
+  const ref = useRef();
   return (
-    <mesh ref={ref}>
+    <mesh ref={ref} position={position}>
       <boxGeometry args={args} />
       <meshStandardMaterial color="pink" />
     </mesh>
