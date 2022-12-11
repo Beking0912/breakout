@@ -1,19 +1,36 @@
-import { Mesh, Vector3 } from "three";
 import * as THREE from "three";
-
-import { useState } from "react";
-import { RADIUS } from "../constants";
+import { Mesh, Vector3 } from "three";
+import { useEffect, useState } from "react";
 import { useFrame, useThree } from "@react-three/fiber";
 
-export default function Ball({ args = [RADIUS, 32, 32], updateScore }) {
+import { randomDirection } from "../utils";
+import { RADIUS } from "../constants";
+
+const init = randomDirection();
+export default function Ball({ args = [RADIUS, 32, 32] }) {
   const [ref] = useState(() => new Mesh());
+
   const [position, setPosition] = useState(new Vector3(0, 0, 0));
-  const [ballDirection, setBallDirection] = useState(new Vector3(1, 1, 0));
+  const [ballDirection, setBallDirection] = useState(init);
   const [speed, setSpeed] = useState(0.05);
 
-  const { scene } = useThree();
+  const [live, setLive] = useState(2);
+  const [score, setScore] = useState(0);
+  const updateScore = (count) => setScore(score + count);
+  const isGameOver = position.y < -5.7 || score === 50 || live < 0;
 
+  useEffect(() => {
+    if (position.y < -5.7 && live > 0) {
+      setLive(live - 1)
+      setPosition(new Vector3(0, 0, 0));
+      setBallDirection(randomDirection());
+    }
+  }, [position, live])
+
+  const { scene } = useThree();
   useFrame(() => {
+    if (isGameOver) return;
+
     const { x, y } = ballDirection;
     const newPosition = new Vector3(position.x + x * speed, position.y + y * speed, 0);
     setPosition(newPosition);

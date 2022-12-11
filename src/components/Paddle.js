@@ -2,7 +2,7 @@ import { useFrame } from "@react-three/fiber";
 import { DEPTH, HEIGHT, WIDTH } from "../constants";
 import { useRef, useState } from "react";
 
-export default function Paddle({ args = [WIDTH * 2, HEIGHT, DEPTH], setPaddle }) {
+export default function Paddle({ args = [WIDTH * 2, HEIGHT, DEPTH] }) {
   // const [position, setPosition] = useState([0, 0, 0]);
   const ref = useRef();
   useFrame((state) => {
