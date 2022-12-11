@@ -1,6 +1,6 @@
 import "./App.css";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Canvas } from "@react-three/fiber";
 
 import Walls from "./components/Wall";
@@ -14,6 +14,12 @@ function App() {
   const [score, setScore] = useState(0);
   const [bricks, setBricks] = useState(BRICKS);
 
+  const updateScore = (count) => setScore(score + count);
+
+  useEffect(() => {
+    if (score === 50) console.log("You win!");
+  }, [score])
+
   return (
     <div className="App">
       {/* <p className="title">{SENTENCES[gameStatus]}</p> */}
@@ -23,8 +29,8 @@ function App() {
         <pointLight position={[10, 10, 5]} />
         <pointLight position={[-10, -10, -5]} />
         <Walls />
-        <Paddle />
-        <Ball />
+        <Paddle/>
+        <Ball updateScore={updateScore}/>
         <Bricks bricks={bricks} />
       </Canvas>
     </div>

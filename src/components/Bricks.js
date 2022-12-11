@@ -4,7 +4,7 @@ import { COLORS, DEPTH, HEIGHT, WIDTH } from "../constants";
 function Brick({ args = [WIDTH, HEIGHT, DEPTH], color, position }) {
   const ref = useRef();
   return (
-    <mesh ref={ref} position={position}>
+    <mesh ref={ref} position={position} name="brick">
       <boxGeometry args={args} />
       <meshStandardMaterial color={color} />
     </mesh>
