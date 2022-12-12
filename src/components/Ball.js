@@ -3,12 +3,12 @@ import { Vector3 } from "three";
 import { useEffect, useState } from "react";
 import { useFrame, useThree } from "@react-three/fiber";
 
-import { randomDirection, randomPReflect, randomLRWallReflect, randomTBWallReflect, getFlag } from "../utils";
+import { randomDirection, randomPReflect, randomLRWallReflect, randomTBWallReflect } from "../utils";
 import { RADIUS } from "../constants";
 
-const speed = 0.05;
+const speed = 0.08;
 const init = randomDirection();
-export default function Ball({ args = [RADIUS, 32, 32] }) {
+export default function Ball({ args = [RADIUS, 32, 32], updateStatus }) {
   const [ref] = useState();
 
   const [position, setPosition] = useState(new Vector3(0, 0, 0));
@@ -16,7 +16,10 @@ export default function Ball({ args = [RADIUS, 32, 32] }) {
 
   const [live, setLive] = useState(2);
   const [score, setScore] = useState(0);
-  const updateScore = (count) => setScore(score + count);
+  const updateScore = (count) => {
+    setScore(score + count);
+    updateStatus({ score: score + count });
+  }
   const isGameOver = position.y < -5.7 || score === 50 || live < 0;
 
   const { scene } = useThree();
@@ -24,13 +27,17 @@ export default function Ball({ args = [RADIUS, 32, 32] }) {
   useEffect(() => {
     if (position.y < -5.7 && live > 0) {
       setLive(live - 1)
+      updateStatus({ live: live - 1 })
       setPosition(new Vector3(0, 0, 0));
       setBallDirection(randomDirection());
     }
   }, [position, live])
 
   useFrame(() => {
-    if (isGameOver) return;
+    if (isGameOver) {
+      if (score === 50 || live === 0) updateStatus({ status: score === 50 ? 1 : 2 })
+      return;
+    }
 
     const { x, y } = ballDirection;
     const newPosition = new Vector3(position.x + x * speed, position.y + y * speed, 0);

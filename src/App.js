@@ -1,7 +1,7 @@
 import "./App.css";
 
-import { useEffect, useRef, useState } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
+import { PureComponent } from "react";
+import { Canvas } from "@react-three/fiber";
 
 import Walls from "./components/Wall";
 import Ball from "./components/Ball";
@@ -10,40 +10,40 @@ import Paddle from "./components/Paddle";
 
 import { BRICKS, SENTENCES } from "./constants";
 
-function App() {
-  const ref = useRef();
-  const [bricks, setBricks] = useState(BRICKS);
-  const [camera, setCamera] = useState([0, 0, -11]);
-
-  // TODO: not work
-  const handleKeyDown = (e) => {
-    if (e.keyCode === 13) {
-      if (camera[1] === 0) setCamera([0, -11, -11]);
-      else setCamera([0, 0, -11]);
-    }
+class App extends PureComponent {
+  constructor(props) {
+    super(props);
+    this.state = {
+      bricks: BRICKS,
+      status: 0,
+      score: 0,
+      live: 2,
+    };
   }
-  useEffect(() => {
-    window.addEventListener('keydown', handleKeyDown);
-    return () => {
-      window.removeEventListener('keydown', handleKeyDown);
-    }
-  }, [])
 
-  return (
-    <div className="App">
-      {/* <p className="title">{SENTENCES[gameStatus]}</p> */}
-      {/* <p className="score">{score}</p> */}
-      <Canvas shadows camera={{ position: camera, fov: 50 }}>
-        <ambientLight intensity={0.3} />
-        <pointLight position={[10, 10, 5]} />
-        <pointLight position={[-10, -10, -5]} />
-        <Walls/>
-        <Paddle/>
-        <Ball/>
-        <Bricks bricks={bricks} />
-      </Canvas>
-    </div>
-  );
+  updateStatus = (value) => this.setState(value);
+
+  render() {
+    const { bricks, status, score, live } = this.state;
+    return (
+      <div className="App">
+        <p className="title">
+          <p>Score: {score}</p>
+          <p>Life: {live}</p>
+          <p>{SENTENCES[status]}</p>
+        </p>
+        <Canvas shadows camera={{ position: [0, 0, -11], fov: 50 }}>
+          <ambientLight intensity={0.3} />
+          <pointLight position={[10, 10, 5]} />
+          <pointLight position={[-10, -10, -5]} />
+          <Walls />
+          <Paddle />
+          <Ball updateStatus={this.updateStatus} />
+          <Bricks bricks={bricks} />
+        </Canvas>
+      </div>
+    );
+  }
 }
 
 export default App;
