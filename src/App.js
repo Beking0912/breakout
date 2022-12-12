@@ -49,9 +49,9 @@ class App extends PureComponent {
         <div className="title">
           <p>Score: {score}</p>
           <p>Life: {live}</p>
-          <p>{SENTENCES[status]}</p>
           <button onClick={this.handleRestart}>START</button>
         </div>
+        <p className="result">{SENTENCES[status]}</p>
       </div>
     );
   }

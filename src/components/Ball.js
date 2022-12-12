@@ -5,8 +5,8 @@ import { useFrame, useThree } from "@react-three/fiber";
 
 import { randomDirection, randomPReflect, randomLRWallReflect, randomTBWallReflect } from "../utils";
 import { RADIUS } from "../constants";
-import breakSound from '../break.wav'
-import paddleSound from '../paddle.wav'
+import breakSound from '../sounds/break.wav'
+import paddleSound from '../sounds/paddle.wav'
 
 const speed = 0.08;
 const init = randomDirection();
@@ -45,8 +45,7 @@ export default function Ball({ args = [RADIUS, 32, 32], live, score, start, upda
 
   useFrame(() => {
     if (isGameOver) {
-      if (score === 50 || live === 0) updateStatus({ status: score === 50 ? 1 : 2 })
-      updateStatus({ start: false })
+      if (score === 50 || live === 0) updateStatus({ status: score === 50 ? 1 : 2, start: false })
       return;
     }
 
