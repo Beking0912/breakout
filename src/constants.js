@@ -1,4 +1,4 @@
-const COLORS = ["blue", "green", "yellow", "orange", "red"];
+const COLORS = ["blue", "green", "yellow", "red"];
 const SENTENCES = ['Score:', 'You win!', 'Game Over.'];
 
 const WIDTH = 1;
@@ -6,14 +6,13 @@ const HEIGHT = 0.4;
 const DEPTH = 1;
 const MARGIN_COLUMN = 0.1;
 const MARGIN_ROW = 0.5;
-const RADIUS = 0.5;
+const RADIUS = 0.25;
 
 let BRICKS = [
   [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
   [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
   [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-  [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-  [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+  [1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
 ];
 BRICKS = BRICKS.map((line, row) =>
   line.map((brick, column) =>
