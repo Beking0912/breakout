@@ -1,4 +1,4 @@
-import { useFrame } from "@react-three/fiber";
+import { useFrame, useThree } from "@react-three/fiber";
 import { DEPTH, HEIGHT, WIDTH } from "../constants";
 import { useRef } from "react";
 // import { Vector3 } from "three";
@@ -110,8 +110,10 @@ export default function Paddle({ args = [WIDTH * 2, HEIGHT, DEPTH] }) {
   // const handleKeyUp = () => setChange(false)
 
 
+  const { camera } = useThree()
   useFrame((state) => {
-    let next = -state.mouse.x * 10;
+    const distance = ref.current.position.distanceTo(camera.position);
+    let next = -state.mouse.x * distance;
     next = Math.max(-5.1, Math.min(4, next));
     ref.current.position.x = next;
     ref.current.position.y = -4.7;
