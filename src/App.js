@@ -2,6 +2,7 @@ import "./App.css";
 
 import { PureComponent } from "react";
 import { Canvas } from "@react-three/fiber";
+import { OrbitControls } from '@react-three/drei'
 
 import Walls from "./components/Wall";
 import Ball from "./components/Ball";
@@ -17,21 +18,21 @@ class App extends PureComponent {
       bricks: BRICKS,
       status: 0,
       score: 0,
-      live: 2,
+      live: 2
     };
   }
 
   updateStatus = (value) => this.setState(value);
-
+  
   render() {
     const { bricks, status, score, live } = this.state;
     return (
       <div className="App">
-        <p className="title">
+        <div className="title">
           <p>Score: {score}</p>
           <p>Life: {live}</p>
           <p>{SENTENCES[status]}</p>
-        </p>
+        </div>
         <Canvas shadows camera={{ position: [0, 0, -11], fov: 50 }}>
           <ambientLight intensity={0.3} />
           <pointLight position={[10, 10, 5]} />
@@ -40,6 +41,7 @@ class App extends PureComponent {
           <Paddle />
           <Ball updateStatus={this.updateStatus} />
           <Bricks bricks={bricks} />
+          <OrbitControls autoRotateSpeed={0.85} zoomSpeed={0.75} minPolarAngle={1} maxPolarAngle={Math.PI} />
         </Canvas>
       </div>
     );
