@@ -35,4 +35,11 @@ button {
   border: none;
   border-radius: 0.5rem;
   cursor: pointer;
+  margin-bottom: 2rem;
+}
+
+.intro {
+  color: white;
+  font-size: 26px;
+  width: 14rem;
 }

@@ -50,6 +50,8 @@ class App extends PureComponent {
           <p>Score: {score}</p>
           <p>Life: {live}</p>
           <button onClick={this.handleRestart}>START</button>
+          <p className="intro">Move mouse to control paddle</p>
+          <p className="intro">Slide trackpad with two fingers to change view</p>
         </div>
         <p className="result">{SENTENCES[status]}</p>
       </div>
