@@ -1,7 +1,13 @@
-# `npm install` + `npm start`
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+# How to run
+- `npm install` + `npm start`
+- Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-# DONE
+# How to Play
+- Click the START button, start the game after 1s
+- Move your mouse to control the position of the paddle
+- Slide your trackpad with two fingers to change the view
+
+# Done
 - display the bricks, ball and paddle
 - animate the ball
 - interaction and disappearing bricks
@@ -9,8 +15,3 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 - play music
 - add better/different physics, e.g. randomness in bounces
 - 3D scenes & 3D view control.
-
-# How to Play
-- Click the START button, start the game after 1s
-- Move your mouse to control the position of the paddle
-- Slide your trackpad with two fingers to change the view
