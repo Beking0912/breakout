@@ -1,4 +1,4 @@
-![breakout](https://s2.loli.net/2022/12/15/qwj21Z486PNdDrK.png)
+![breakout.gif](https://s2.loli.net/2023/09/09/biAxmCr4BToqKYp.gif)
 
 # Breakout in 3D
 **👉👉👉 View the detailed tutorial here: [Game Development: 3D Breakout](https://beking0912.github.io/2022/12/13/3D-Breakout-with-react-three-fiber/)**
